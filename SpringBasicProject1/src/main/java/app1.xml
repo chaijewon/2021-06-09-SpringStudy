@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+    <!-- 
+       bean => 클래스 등록 
+               id => key로 사용한다 (중복이 있으면 안된다)
+               class => 반드시 패키지명부터 사용한다 
+               
+               new A();
+               Class.forName("com.sist.spring4.A");
+     -->
+    <bean id="a" class="com.sist.spring4.A"/> 
+    <!--  new A() 
+          map.put("a",new A())
+    -->
+    <bean id="b" class="com.sist.spring4.B"/>
+    <!--  new B() 
+          map.put("b",new B())
+    -->
+    <bean id="c" class="com.sist.spring4.C"/>
+    <!--  new C() 
+          map.put("c",new C())
+    -->
+</beans>
