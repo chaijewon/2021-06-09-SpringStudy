@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 메타데이터 -->
+<beans>
+  <bean id="dao" class="com.sist.main.MovieDAO"/>
+</beans>

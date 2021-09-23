@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+   <bean id="dao" class="com.sist.spring.MovieDAO" init-method="init"/>
+   <!-- 
+       1. 클래스 메모리 할당(생성자 함수 호출)
+       2. DI (멤버변수/생성자 매개변수) => 값을 채운다
+       3. 메소드 호출 (init-method)  => 드라이버 등록 / 서버연결 / cookie에서 id읽기
+       4. 프로그래머가 필요한 메소드 호출 
+       5. 메모리 해제 (destory-method)
+       
+       ==> 컨테이너가 해주는 역할 
+                    객체의 생명주기 관리(생성~소멸) => 생성/소멸 ==> 스프링은 핵심만 코딩
+          ========================
+                     = 객체 찾기 (getBean("key")) (DL)
+                     = 필요한 데이터 전송 (DI) (주입)
+                                    ===========
+                                     = setter 
+                                     = constructor
+       ==> XML (XML대체 => 자바(5.0)/어노테이션)
+    -->
+</beans>
