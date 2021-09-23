@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace:자바패키지 -->
+<mapper namespace="com.sist.main.food-mapper">
+  <!-- 
+       <select>
+       =========== executeQuery => 결과값이 존재 (어떤 데이터로 받는 지 설정)
+                                       resultType
+       <insert>
+       <update>
+       <delete>
+       =========== executeUpdate()  => parameterType
+       <sql> => SQL문장이 중복이 있는 경우 처리
+       <selectKey> => sequence
+   -->
+  <select id="foodListData" resultType="FoodVO">
+   <!--  List<FoodVO> : selectList -->
+   SELECT name,address,tel FROM project_food_house
+  </select>
+  <select id="foodDetailData" resultType="FoodVO" parameterType="int">
+    <!-- 
+          resultType : return  ==> insert/update/delete(resultType속성이 없다)
+          parameterType : 매개변수 
+          public FoodVO foodDetailData(int no)
+          {
+              selectone()
+          }
+     -->
+     SELECT name,address,tel FROM project_food_house
+     WHERE no=#{no}
+  </select>
+</mapper>

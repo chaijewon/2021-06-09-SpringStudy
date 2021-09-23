@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<!-- 
+     1. VO를 모아준다 
+     2. SQL문장을 모아준다
+     ================== 관리하는 역할 
+ -->
+<configuration>
+  <typeAliases>
+    <typeAlias type="com.sist.main.FoodVO" alias="FoodVO"/>
+  </typeAliases>
+  <mappers>
+    <mapper resource="com/sist/main/food-mapper.xml"/>
+    <!-- mapper는 1개 테이블 갯수만큼 -->
+  </mappers>
+</configuration>
