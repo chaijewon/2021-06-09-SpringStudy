@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+       등록 : 클래스 관리 (클래스 등록 / 필요한 데이터 첨부(DI))
+         XML / Annotation / Java(5.0 버전은 보안(소스노출 없이))
+                            .class
+         => 스프링 => 버전 : 4버전 ... XML
+         
+   XML의 태그는 스프링에서 지정된 태그와 속성만 사용이 가능
+ -->
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+    <bean id="sa1" class="com.sist.di.Student"
+      p:hakbun="1"
+      p:name="홍길동"
+      p:sex="남자"
+    />
+    <bean id="sa2" class="com.sist.di.Student"
+      p:hakbun="2"
+      p:name="춘향이"
+      p:sex="여자"
+    />
+    <bean id="sa3" class="com.sist.di.Student"
+      p:hakbun="3"
+      p:name="박문수"
+      p:sex="남자"
+    />
+    <!-- ArrayList에 값을 채운다 -->
+    <!-- 
+          StudentSystem ss=new StudentSystem();
+          list.add(sa1); sa1=> new Student()
+          list.add(sa2);
+          list.add(sa3)
+     -->
+    <bean id="ss" class="com.sist.di.StudentSystem" init-method="init">
+      <property name="list">
+       <list>
+         <ref bean="sa1"/><!-- ref="id명" 클래스를 읽어올 경우에 사용 -->
+         <ref bean="sa2"/>
+         <ref bean="sa3"/>
+       </list>
+      </property>
+    </bean>
+</beans>

@@ -50,6 +50,22 @@ public class EmpDAO {
 		   String sql="SELECT empno,ename,job FROM emp";
 		   ps=conn.prepareStatement(sql);
 		   ResultSet rs=ps.executeQuery();
+		   ResultSetMetaData rsmd = rs.getMetaData();
+		   int columnCnt = rsmd.getColumnCount(); //컬럼의 수
+		   String[] column=new String[columnCnt];
+		   if(rs.next()){
+		     for(int i=1 ; i<=columnCnt ; i++){
+		                                       // 컬럼명                                   //데이터
+		          //System.out.println(rsmd.getColumnName(i));  
+		          column[i-1]=rsmd.getColumnName(i);
+		     }
+		   }
+		   rs.close();
+		   for(String s:column)
+		   {
+			   System.out.println(s);
+		   }
+		   rs=ps.executeQuery();
 		   while(rs.next())
 		   {
 			   EmpVO vo=new EmpVO();
