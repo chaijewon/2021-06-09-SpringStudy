@@ -3,6 +3,7 @@ package com.sist.di;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 // p:name , p:driver-ref=""
+
 public class MainClass {
 
 	public static void main(String[] args) {
