@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+    <bean id="sa" class="com.sist.main.Sawon" scope="prototype"/>
+    <!-- 메모리공간 생성시마다 따로 메모리를 만들어 준다  -->
+    <bean id="sa1" class="com.sist.main.Sawon" scope="singleton"/>
+    <!-- 메모리 공간을 1개만 사용  -->
+    <bean id="sa2" class="com.sist.main.Sawon"/>
+    <!-- scope가 생략시  scope="singleton"-->
+</beans>

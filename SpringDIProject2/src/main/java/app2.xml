@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:c="http://www.springframework.org/schema/c"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
+    <!-- beans : 클래스 등록 , c:생성자 매개변수   ,  p:setXxx()를 이용해서 값을 주입 
+         지역변수는 사용 할 수 없다 => 멤버변수 , 매개변수를 이용해서 값 주입 (DI)
+     -->
+     <!--  setter DI  -->
+     <bean id="mem1" class="com.sist.di.Member"><!-- 디폴트 생성자를 호출 -->
+       <property name="name"><value>홍길동</value></property>
+       <property name="sex"><value>남자</value></property>
+       <property name="age"><value>25</value></property>
+     </bean>
+     <!-- 
+            Member mem1=new Member();
+            mem1.setName("홍길동");
+            mem1.setSex("남자");
+            mem1.setAge(25);
+      -->
+     <bean id="mem2" class="com.sist.di.Member">
+       <property name="name" value="심청이"/>
+       <!-- 
+           public void setName(String name) {
+		    this.name = name;
+	       }
+	       
+	       =>mem2.setName(value="심청이");
+        -->
+       <property name="sex" value="여자"/>
+       <property name="age" value="20"/>
+     </bean>
+     <!-- 가장 많이 사용하는 방법 -->
+     <bean id="mem3" class="com.sist.di.Member"
+       p:name="박문수"
+       p:sex="남자"
+       p:age="30"
+     />
+     <!-- 
+               주입 => database연동 
+      -->
+</beans>

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans>
+  <bean id="std" class="com.sist.userdi.Student">
+    <property name="hakbun" value="1"/>
+    <property name="name" value="홍길동"/>
+    <property name="sex" value="남자"/>
+  </bean>
+</beans>

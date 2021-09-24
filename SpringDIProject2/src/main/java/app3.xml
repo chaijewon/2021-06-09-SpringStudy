@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:c="http://www.springframework.org/schema/c"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+    <!-- 변수에 값을 주입 : 생성자의 매개변수를 이용해서 주입 -->
+    <!-- 
+       public Member(String name, String sex, int age) {
+		this.name = name;
+		this.sex = sex;
+		this.age = age;
+	   }
+     -->
+     <bean id="mem1" class="com.sist.di.Member">
+       <constructor-arg value="홍길동" index="0"/><!-- index는 생략이 가능 -->
+       <constructor-arg value="남자" index="1"/>
+       <constructor-arg value="30" index="2"/>
+     </bean>
+     <!-- 가장 많이 사용하는 방법  -->
+     <bean id="mem2" class="com.sist.di.Member"
+       c:name="심청이"
+       c:sex="여자"
+       c:age="25"
+     />
+     <bean id="mem3" class="com.sist.di.Member"
+       c:_0="박문수"
+       c:_1="남자"
+       c:_2="33"
+     />
+</beans>

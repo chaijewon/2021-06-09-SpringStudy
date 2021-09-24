@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+    <bean id="sa" class="com.sist.method.Sawon" 
+      init-method="init"
+      destroy-method="destory"
+      p:name="홍길동"
+      p:dept="개발부"
+      p:job="사원"
+    />
+    <!-- 
+          init-method : 객체가 생성될때 호출되는 메소드 지정 
+          destory-method : 객체 메모리가 해제가 될때 호출 되는 메소드 지정 
+     -->
+    <!-- 
+           new Sawon()
+           c:
+           <contstructor arg>
+     -->
+</beans>
