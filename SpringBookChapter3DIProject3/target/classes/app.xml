@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:c="http://www.springframework.org/schema/c"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+    <!-- 
+         스프링에 요청 => FoodDAO를 생성 
+                  => 생성이 끝나면 MainClass에 dao의 주소를 넘겨달라
+     ==> DI(IoC) => 클래스의 관계도 (작은 개념:변수,객체주소에 값을 주입)             
+     -->
+     
+    <!-- 
+             순서는 상관없다 
+       스프링 파싱 
+        1. bean태그에 등록된 클래스를 메모리 할당을 한다 
+           MainClass mc=new MainClass()
+           FoodDAO dao=new FoodDAO();
+           
+         2. setter메소드에 값을 채워준다 
+         dao.setUrl("")...
+         mc.setFoodDAO(dao)
+     -->
+    <!-- 
+          <bean id="dao" class="com.sist.dao.FoodDAO">
+            <construtor-arg value="oracle.jdbc.driver.OracleDriver"/>
+            <property name="url" value="jdbc:oracle:thin:@211.238.142.181:1521:XE"/>
+            <property name="username" value="hr"/>
+            <property name="password" value="happy"/>
+          </bean>
+          
+          <bean id="dao" class="com.sist.dao.FoodDAO"
+		       c:_0="oracle.jdbc.driver.OracleDriver"
+		       p:url="jdbc:oracle:thin:@211.238.142.181:1521:XE"
+		       p:username="hr"
+		       p:password="happy"
+		    />
+    
+     -->
+    <bean id="dao" class="com.sist.dao.FoodDAO"
+       c:driverName="oracle.jdbc.driver.OracleDriver"
+       p:url="jdbc:oracle:thin:@211.238.142.181:1521:XE"
+       p:username="hr"
+       p:password="happy"
+    />
+    <!-- 
+         dao.setUrl("jdbc:oracle:thin:@211.238.142.181:1521:XE");
+     -->
+    <bean id="mc" class="com.sist.main.MainClass"
+      p:dao-ref="dao"
+    />
+    <!-- 
+          mc.setFoodDAO(p:dao-ref="dao")
+     -->
+    <!-- 
+         주소값 : p:dao-ref="id명"
+         일반 변수 : p:url="jdbc:oracle:thin:@211.238.142.181:1521:XE"
+     -->
+</beans>
