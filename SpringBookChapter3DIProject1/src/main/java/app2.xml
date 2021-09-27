@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:c="http://www.springframework.org/schema/c"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+    <bean id="sa" class="com.sist.constructor.Sawon"
+      c:name="박문수"
+      c:dept="개발부"
+      c:job="대리"
+    />
+    <!-- 
+          Sawon sa=new Sawon("박문수","개발부",대리");
+          sa를 메모리에 저장 
+     -->
+</beans>

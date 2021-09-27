@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+    <bean id="std" class="com.sist.main.Student"
+      p:hakbun="1" 
+      p:name="홍길동"
+      p:subject="컴퓨터과"
+    />
+    <!-- 
+         스프링 
+          Student std=new Student();
+          std.setHakbun(1)
+          std.setName("홍길동")
+          std.setSubject("컴퓨터과")
+          
+          => std를 저장 => 메모리 
+     -->
+</beans>
