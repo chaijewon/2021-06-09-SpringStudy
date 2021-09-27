@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+    <!-- 
+          실무 : 
+            1) 사용자(프로그래머가 만들 클래스 저장) application-context.xml
+            2) 데이터베이스 관련  application-datasource.xml
+            3) 웹 채팅 / AI (채봇) application-websoket.xml
+            4) 기타  application-etc.xml
+            5) 보안 application-security.xml
+            =====> 재사용 
+     -->
+     <bean id="sa" class="com.sist.main.Sawon"/>
+</beans>
