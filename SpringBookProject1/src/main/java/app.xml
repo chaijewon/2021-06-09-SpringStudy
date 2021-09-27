@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+    <!-- class 등록 (실무:4버전) => XML (책에 존재하지 않는다)-->
+    <!-- <bean> 등록 클래스만 관리  
+         <bean> 속성 
+         = id => 등록된 클래스를 찾기위한 구분문자 (중복이 있으면 안된다)
+         = class => 등록하는 클래스명을 전송(패키지명부분 클래스명까지 등록)
+           ================================ 필수 
+         = init-method => 객체 생성시에 자동 호출할 메소드 지정(없는 경우(X))
+         = destory-method => 객체 소멸시에 자동 호출할 메소드 지정 (없는 경우(X))
+         = p:변수명 => DI => 객체생성시에 필요한 데이터를 주입
+           = property (멤버변수)
+           c: => (생성자)
+    -->
+    <!-- 
+         기본 : singleton (여러개의 객체를 생성할때 저장하는 공간 1개다)
+          scope="prototype" 객체마다 저장공간을 따로 생성
+          =================
+           Object clone() => 복제 
+     -->
+    <bean id="sa" class="com.sist.main.Sawon" scope="prototype"/> <!-- 컨터이너가 메모리 할당후 저장 -->
+    <!--  STS 3.8.4 XML,Java-->
+    <!-- STS 3.9 ~ 어시스트가 없다 (Java) : Mac-->
+    <!-- STS 4.~ SpringFramework(X) , Spring-Boot (작은 프로그램)-->
+    <!-- 차세대 (현재 개발중...)
+                 스프링 : 일반 서버역할  => 연결(Front-end: VueJS/ReactJS)
+         => 프로그램 (셋팅/구동) => Google (버전 호환)
+         => 입사 => 노트북 (셋팅=본인이 한다)
+         => java / 이클립스 / pom.xml / 구동 
+         => 클래스 등록 파일 생성 
+     -->
+     
+</beans>
