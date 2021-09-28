@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:c="http://www.springframework.org/schema/c"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+    <!--  필요시마다 객체 주입이 가능  (유연성이 좋다)-->
+    <bean id="ds" class="com.sist.dao.SeoulDataSource"
+      p:url="jdbc:oracle:thin:@211.238.142.181:1521:XE"
+      p:username="hr"
+      p:password="happy"
+    />
+    <bean id="hdao" class="com.sist.dao.HotelDAO"
+      c:driverName="oracle.jdbc.driver.OracleDriver"
+      p:ds-ref="ds"
+    />
+    <bean id="ndao" class="com.sist.dao.NatureDAO"
+      c:driverName="oracle.jdbc.driver.OracleDriver"
+      p:ds-ref="ds"
+    />
+    <bean id="ldao" class="com.sist.dao.LocationDAO"
+      c:driverName="oracle.jdbc.driver.OracleDriver"
+      p:ds-ref="ds"
+    />
+    
+    <bean id="mc" class="com.sist.main.MainClass"
+      p:hdao-ref="hdao"
+      p:ldao-ref="ldao"
+      p:ndao-ref="ndao"
+    />
+</beans>

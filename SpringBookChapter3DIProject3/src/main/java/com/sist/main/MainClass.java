@@ -15,6 +15,9 @@ public class MainClass {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
+		Scanner scan=new Scanner(System.in);
+		System.out.print("구 입력:");
+		String gu=scan.next();
         ApplicationContext app=
         	new ClassPathXmlApplicationContext("app.xml");
         //MainClass mc=new MainClass();//MainClass => 반드시 스프링에 저장된 MainClass
