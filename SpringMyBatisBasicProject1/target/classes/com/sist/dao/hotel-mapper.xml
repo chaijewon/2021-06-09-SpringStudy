@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- SQL문장을 저장하는 파일 -->
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- DTD : XML의 문서를 정의한 파일 (태그명 , 속성명)  => 실무 
+     XML
+      1. 여는태그 / 닫는 태그가 동일 
+      2. 속성값 : ""
+      3. 태그나 속성명은 대소문자를 구분한다 
+      4. 태그사용하는 순서 (XML에서 오류발생시 자바는 파싱할 수 없다)
+     Annotation을 방식 
+     
+     = 마이바티스를 사용하는 목적 
+       1. 소스 간결하다 (30%)
+       2. getConnection()/disConnection()
+          => 코딩이 돠어 있다 (연결/해제=>신경쓰지 않는다)
+       3. PreparedStatement,ResultSet이 자동 구현된다 
+       4. 표준화가 되어 있다 (인터페이스 , 라이브러리)=>라이브러리 / 스프링 
+       5. 분산처리 (여러개명이 동시 개발이 가능)
+          ============================
+                   스프링 => 자바
+          DB(SQL) => mapper
+      * 주의점 
+          = 데이터베이스에 있는 컴럼명과 VO에 있는 변수명이 반드시 일치 
+          
+      1. SQL문장 작성방법 
+      2. 반복구간 (SQL) => 별로처리 방법 
+      3. 값을 받는 경우 (?처리)  
+      4. PL/SQL 호출 방법 
+      5. VO에 없는 변수 처리시 사용법 
+      6. for-each , if ...(동적 쿼리)
+      7. 어노테이션 , JOIN/SUBQUERY 처리 방법 
+      
+      8. 마이바티스에서 지원하는 메소드 
+         = SELECT ==> (List형식으로 받는 경우:다중행) => selectList()
+         = SELECT ==> (단일행: int(총페이지),VO) => selectOne()
+         = UPDATE ==> update()
+         = DELETE ==> delete()
+         = INSERT ==> insert()
+-->
+<!-- 
+    namespace => 자바 (package)
+ -->
+<mapper namespace="com.sist.dao.hotel-mapper">
+   <!-- 
+       SELECT name,addr as address FROM member
+       class MemberVO
+       {
+           private String name,address;
+             => setName() , setAddr()
+             => <result property="address" column="addr">
+                        setAddress(rs.getString("addr"))
+       }
+       (resultMap* | 
+       parameterMap* | sql* | insert* | 
+       update* | delete* | select*)+
+       resultMap  => JOIN이나 (컬럼명과 VO의 변수명이 틀릴 경우)
+       ========= ResultSet 
+       parameterMap => PL/SQL (procedure호출)
+       sql : 반복적인 SQL문장 
+       insert : insert  ==> @Insert(SQL)
+       update : update  ==> @Update(SQL)
+       delete : delete  ==> @Delete(SQL)
+       select : select  ==> @Select(SQL)
+    -->
+    <!-- SQL구분 id=중복이 없다 (primary key) , 반드시 문자열로 시작  -->
+    <!-- 
+                HotelVO vo=new HotelVO();
+    			vo.setName(rs.getString(1));
+    			vo.setScore(rs.getDouble(2));
+     -->
+    <select id="hotelListData" resultType="com.sist.dao.HotelVO">
+      SELECT no,name,score,address 
+      FROM seoul_hotel
+    </select>
+    <!-- 
+          parameterType="int"  => ps.setInt()
+          parameterType="String" => ps.setString()
+          
+          resultType
+          parameterType 
+          ===============> 한번만 사용이 가능 
+          
+          paramterType="HotelVO"  ?가 두개이상일 경우에는 VO
+          SELECT * FROM hotel
+          WHERE name=? AND address=?
+          
+          VO에 없는 값을 설정 
+          
+          WHERE num BETWEEN ? AND ?  => start,end
+          => HashMap을 이용한다 
+          => ? 해당 데이터형 설정 
+     -->
+    <select id="hotelDetailData" resultType="com.sist.dao.HotelVO" parameterType="int">
+      SELECT no,name,address,score
+      FROM seoul_hotel
+      WHERE no=#{no}
+    </select>
+    <!-- 
+          #{no}  ==> ? ps.setInt(1,no)
+          ${} ==> table명 , 컬럼명을 설정 할때 
+          
+          WHERE ${name} LIKE ~~
+     -->
+     <select id="hotelFindData" resultType="com.sist.dao.HotelVO" parameterType="string">
+       SELECT no,name,address,score
+       FROM seoul_hotel
+       WHERE name LIKE '%'||#{name}||'%'
+     </select>
+     
+     <select id="hotelPageingData" resultType="com.sist.dao.HotelVO" parameterType="hashmap">
+       SELECT no,name,score,num 
+       FROM (SELECT no,name,score,rownum as num 
+       FROM (SELECT no,name ,score 
+       FROM seoul_hotel ORDER BY no ASC))
+       WHERE num BETWEEN #{start} AND #{end}
+       <!-- 
+           #{start} => map.get("start")
+           #{end}   => map.get("end")
+           #{} => get-method
+        -->
+     </select>
+     <select id="hotelTotalPage" resultType="int">
+      SELECT CEIL(COUNT(*)/10.0) FROM seoul_hotel
+     </select>
+     <!-- JOIN , SubQuery --> 
+</mapper>
+
+
+
+
+
+
+
+
+
+

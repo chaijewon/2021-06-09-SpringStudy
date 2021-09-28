@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+   mapper : SQL문장을 저장 파일 
+   ======
+     table갯수 만큼 만든다 
+ -->
+<!-- mapper를 모아서 한번 관리 , VO를 모아서 관리 -->
+<!DOCTYPE configuration
+ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+  <!-- 
+      (properties?, settings?, typeAliases?, typeHandlers?, 
+      objectFactory?, objectWrapperFactory?, 
+      reflectorFactory?, plugins?, environments?, 
+      databaseIdProvider?, mappers?)
+      
+      DTD => 기호 
+      ? => 태그를 사용할 수도 있고 사용하지 않을 수도 있다 (필요시에만 사용을 한다)
+      | => 둘중에 한개를 선택  (td|th)
+      + => 한번이상 사용 
+      * => 0번이상 
+      default => 반드시 한번만 사용한다 
+      
+      public List<HotelVO> hotelFindData(String addr)
+      {
+    	
+    	SQL / VO
+    	return selectList(SQL,데이터전송값);
+    }
+   -->
+   <typeAliases>
+     <!-- (typeAlias*, package*) -->
+     <!-- <typeAlias type="com.sist.dao.HotelVO" alias="HotelVO"/> -->
+     <!-- 
+            결과값이 나온 경우에 마이바티스 라이브러리에서 채워주는 클래스명 
+      -->
+     <typeAlias type="com.sist.dao.LocationVO" alias="LocationVO"/>
+   </typeAliases>
+   <mappers>
+      <!-- (mapper*, package*) -->
+      <mapper resource="com/sist/dao/hotel-mapper.xml"/>
+      <!-- <mapper resource="com/sist/dao/location-mapper.xml"/> -->
+   </mappers>
+</configuration>
