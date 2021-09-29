@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--  import -->
+<!-- 
+     <resultMap>
+       = 컬럼명과 VO의 변수명이 틀린경우 (매칭) , JOIN,SubQuery
+         <result property="mno" column="no">
+       = 컬럼명과 VO의 변수명이 같은 경우는 resultMap를 사용할 필요가 없다 
+ -->
+<mapper namespace="com.sist.dao.melon-mapper">
+  <select id="melonListData" resultType="MelonVO">
+   SELECT no,title,singer,album 
+   FROM melon_cjw
+   ORDER BY no ASC
+  </select>
+</mapper>

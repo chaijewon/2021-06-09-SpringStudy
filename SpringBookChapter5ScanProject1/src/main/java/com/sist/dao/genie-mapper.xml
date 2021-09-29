@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 
+    자바 : package 
+  XML : namespace
+ -->
+<mapper namespace="com.sist.dao.genie-mapper">
+  <resultMap type="GenieVO" id="genieData">
+    <result property="genie_no" column="no"/>
+    <result property="genie_title" column="title"/>
+    <result property="genie_singer" column="singer"/>
+    <result property="genie_album" column="album"/>
+    <!-- 
+           while(rs.next())
+           {
+               GenieVO vo=new GenieVO();
+               vo.setGenie_no(rs.getInt("no")); 
+                   getInt("no") ==> index번호 사용
+                   getString("title") ==> column
+           }
+     -->
+  </resultMap>
+  <select id="genieListData" resultMap="genieData">
+    SELECT title,no,singer,album
+    FROM genie_cjw
+    ORDER BY no ASC
+  </select>
+  <select id="genieListData2" resultType="GenieVO">
+    SELECT no as genie_no,title as genie_title,
+           singer as genie_singer,album as genie_album
+    FROM genie_cjw
+    ORDER BY no ASC
+  </select>
+</mapper>
+
+
+
+
+
+

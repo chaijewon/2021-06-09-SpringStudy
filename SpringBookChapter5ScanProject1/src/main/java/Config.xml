@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- mybatis 셋팅 (VO,SQL문장을 한번에 모아준다):파싱을 한번에 처리 -->
+<!DOCTYPE configuration
+ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-config.dtd">
+ <!-- XML은 태그 사용하는 순서가 존재 -->
+ <!-- 
+      (properties?, 
+      settings?, 
+      typeAliases?, 
+      typeHandlers?, 
+      objectFactory?, 
+      objectWrapperFactory?, 
+      reflectorFactory?,
+      plugins?, 
+      environments?, 
+      databaseIdProvider?, 
+      mappers?)
+  -->
+ <configuration>
+   <!-- VO를 모아준다 -->
+   <typeAliases>
+     <!--  (typeAlias*, package*) -->
+     <typeAlias type="com.sist.dao.MelonVO" alias="MelonVO"/>
+     <typeAlias type="com.sist.dao.GenieVO" alias="GenieVO"/>
+   </typeAliases>
+   <!-- SQL문장을 모아준다 -->
+   <mappers>
+      <!--  (mapper*, package*) -->
+     <!-- ENTITY : XML에서 include -->
+     <mapper resource="com/sist/dao/melon-mapper.xml"/>
+     <mapper resource="com/sist/dao/genie-mapper.xml"/>
+   </mappers>
+   
+ </configuration>
