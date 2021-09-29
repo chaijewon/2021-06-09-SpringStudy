@@ -40,6 +40,6 @@
    <mappers>
       <!-- (mapper*, package*) -->
       <mapper resource="com/sist/dao/hotel-mapper.xml"/>
-      <!-- <mapper resource="com/sist/dao/location-mapper.xml"/> -->
+      <mapper resource="com/sist/dao/location-mapper.xml"/>
    </mappers>
 </configuration>

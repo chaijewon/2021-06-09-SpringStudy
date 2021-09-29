@@ -1,5 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper>
-  
+<mapper namespace="com.sist.dao.location-mapper">
+    <select id="locationListData" resultType="LocationVO">
+      SELECT no,title,address 
+      FROM seoul_location
+    </select>
+    
+    <select id="locationDetailData" resultType="LocationVO" parameterType="int">
+      SELECT no,title,address
+      FROM seoul_location
+      WHERE no=#{no}
+    </select>
+    
+     <select id="locationFindData" resultType="LocationVO" parameterType="string">
+       SELECT no,title,address
+       FROM seoul_location
+       WHERE title LIKE '%'||#{title}||'%'
+     </select>
+     
+     <select id="locationPageingData" resultType="LocationVO" parameterType="hashmap">
+       SELECT no,title,num 
+       FROM (SELECT no,title,rownum as num 
+       FROM (SELECT no,title 
+       FROM seoul_location ORDER BY no ASC))
+       WHERE num BETWEEN #{start} AND #{end}
+     </select>
+     <select id="locationTotalPage" resultType="int">
+      SELECT CEIL(COUNT(*)/10.0) FROM seoul_location
+     </select>
+     <!-- JOIN , SubQuery --> 
 </mapper>

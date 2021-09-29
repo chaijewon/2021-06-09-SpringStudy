@@ -22,4 +22,7 @@
     <bean id="dao" class="com.sist.dao.HotelDAO"
       p:sqlSessionFactory-ref="ssf"
     />
+    <bean id="ldao" class="com.sist.dao.LocationDAO"
+      p:sqlSessionFactory-ref="ssf"
+    />
 </beans>
