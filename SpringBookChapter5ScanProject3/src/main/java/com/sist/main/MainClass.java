@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 
 import com.sist.dao.*;
 // 메모리 할당
-@Component
+@Component("mc")
 public class MainClass {
 	@Autowired
     private FoodCategoryDAO cdao;
@@ -16,7 +16,7 @@ public class MainClass {
 		// TODO Auto-generated method stub
         ApplicationContext app=
         		new ClassPathXmlApplicationContext("app.xml");
-        MainClass mc=app.getBean("mainClass",MainClass.class);
+        MainClass mc=app.getBean("mc",MainClass.class);
         // ID를 설정하지 않는 경우 => default id가 생성 => 클래스명(첫자만 소문자)
         List<FoodCategoryVO> list=mc.cdao.categoryListData();
         for(FoodCategoryVO vo:list)
