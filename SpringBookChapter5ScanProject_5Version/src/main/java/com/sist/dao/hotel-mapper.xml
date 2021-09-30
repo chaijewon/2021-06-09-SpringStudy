@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- SQL문장 (PreparedStatement,ResultSet) 설정 -->
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sist.dao.hotel-mapper">
+  <!-- 
+       Config.xml
+       <typeAlias type="com.sist.dao.HotelVO" alies="HotelVO">
+                 ====== 클래스등록
+   -->
+  <sql id="hotel-select"><!-- Sql문장이 중복이 많은 경우 저장 = 재사용 -->
+    SELECT no,name,address,score
+    FROM seoul_hotel
+  </sql> <!-- 조인 , 서브쿼리 -->
+  <select id="hotelListData" resultType="HotelVO">
+    <include refid="hotel-select"/>
+    ORDER BY no ASC
+  </select>
+  <select id="hotelDetailData" resultType="HotelVO" parameterType="int">
+    <include refid="hotel-select"/>
+    WHERE no=#{no}
+  </select>
+  <!-- 
+       map.put("id명","SELECT no,name,address,score
+               FROM seoul_hotel")
+       <sql> : 중복 SQL을 저장후에 재사용 
+       <select> : 속성 => id(중복이 되면 안된다)
+                         resultType , parameterType(?가 있는 경우에만 사용) 
+       <insert> : id , parameterType  => resultType은 없다
+       <update> : id , parameterType  => resultType은 없다
+       <delete> : id , parameterType  => resultType은 없다
+       <resultMap> : VO의 변수명 != 컬럼명 => as
+       => 동적쿼리 (사용자에 의해서 SQL문장이 변경)
+            이름 / 내용 / 제목   => WHERE name LIKE 
+                         WHERE content LIKE
+                         WHERE subject LIKE
+                         <if> <for-each> <choose>
+   -->
+</mapper>
+
+
