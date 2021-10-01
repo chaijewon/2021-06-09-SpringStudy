@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+    <!-- ApplicationContext로 관리할 클래스 등록  -->
+    <bean id="sa" class="com.sist.main.Sawon" scope="prototype"/>
+    <!-- 
+         id는 중복이 되면 안된다
+         class는 반드시 패키지명부터 등록한다 
+         
+         => Class clsName=Class.forName("com.sist.main.Sawon");
+            Object obj=clsName.newInstance()
+            
+            Map => 저장 
+            ==================
+               key     value
+            ==================
+               sa      obj(객체주소)  ==> Object getBean()
+            ==================
+               => 저장된 객체를 얻어서 사용 반드시 형변환 
+               => 자바기본 
+                  ======
+                         Object : 모든 클래스의 최상위 
+                           |
+                             모든 클래스 (라이브러리,사용자 정의)
+                             
+                 => 자바클래스의 크기는 상속이나 포함이 된 경우에만 크기 결정 
+                                  ========== 필요시에 형변환을 한다
+                 => 상속 내린다 > 상속을 받는 클래스 
+                      double       int 
+                    int a=2.4; ==> 오류  int a=(int)2.4
+                    ===== ===
+                      4    8
+                    Sawon sa=(Sawon)new Object()
+                    ======== ============
+                      int        double
+                 => 라이브러리(클래스와 관련) ==> return Object
+                 
+                 Object obj=new Sawon();
+                               메소드는 받는 클래스의 메소드 호출이 가능 
+                               
+                 class Object
+                 {
+                     clone(){} , toString(){}...
+                 }
+                 class Sawon extends Object
+                 {
+                     //clone(){} , toString(){}...
+                     public void display(){}
+                 }
+                 Object obj=new Sawon();
+                 obj.display()(X)
+                 
+     -->
+</beans>
