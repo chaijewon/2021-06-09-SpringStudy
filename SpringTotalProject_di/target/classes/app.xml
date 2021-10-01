@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:c="http://www.springframework.org/schema/c"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+    <!-- 
+                 스프링 : 동작을 위한 빼대 => 값을 채워서 동작을 할 수 있게 만든다 
+                => 조립기할 수 있는 부품만 제공 => 조립 (사용자)
+                                          ==========
+                                          XML
+                 자바 : 소스 코딩 (사용자)
+     -->
+    <!-- DataSource에 값을 채워라 -->
+    <bean id="ds"
+       class="com.sist.main.DataSource"
+       p:driverClassName="oracle"
+       p:url="211.238.142.181"
+       p:username="hr"
+       p:password="happy"
+    />
+    <!-- 생성된 DataSource객체를 SawonDAO,MemberDAO 주입 -->
+    <bean id="sd" class="com.sist.main.SawonDAO"
+      p:ds-ref="ds"
+     />
+     <!-- 84page -->
+    <bean id="md" class="com.sist.main.MemberDAO"
+      c:ds-ref="ds"
+    />
+    <!-- 80page  -->
+    <!-- 
+         92page
+         String[] xml={"app1.xml","app2.xml","app3.xml"}
+         ApplicationContext app=
+            new ClassPathXmlApplicationContext(xml);
+         = XML파일 파일크기가 크다 (파싱속도가 늦다 : 가급적이면 나눠서 작업)
+         = 네트워크 (파일 전송) => 나눠서 전송 
+         90
+         
+         30          30           30
+         ==========|=============|========= 속도 1/3정도 속도가 빠르다 
+         
+         90=>....
+         ==========|=============|=========
+         
+                직접 주입 : setter/생성자 
+         스프링을 통해서 자동 주입 : @Autowired (실무에서 거의 대부분)
+                         =========== 일반변수는 존재하지 않고 
+                                                객체주소만 주입 (95page)
+     101page : 대상 (스프링에서 주로 관리 클래스)
+                   ======사용자가 만든 모든 클래스를 관리(X)
+                   ======프로그래머가 결정 
+                                    컴포넌트 : 기능 , 여러 클래스 사용되는 클래스
+                   ============ ~VO,~DTO (일반 데이터:사용자 데이터)
+                                ========= 제외
+                   ~DAO , ~Manager , ~Service...
+                자동 주입
+         @Autowired 사용위치
+         =================
+         class A
+         {
+             @Autowired 
+             private B b; => 자동으로 b객체의 주소를 주입 
+             
+             @Autowired => 생성자의 매개변수에 값 주입
+             public A(B b){}
+                     =====
+             @Autowired => set메소드의 매개변수에 값을 주입        
+             public void setB(B b){}
+                             =====
+             ==> 일반변수는 사용할 수 없다 , 객체 주소만 주입 
+         } 
+                객체가 중복 => 선택 @Resource(name="id명")
+                
+                  등록해야 하는 클래스가 많은 경우 : 패키지단위로 등록
+          <context:component-scan base-package="com.sist.dao">
+          <context:component-scan base-package="com.sist.main">
+          <context:component-scan base-package="com.sist.*">
+          => 패키지안에는 등록하는 클래스 / 등록하지 않는 클래스
+             =====================
+                         어노테이션을 사용
+                = @Component
+                = @Repository
+                = @Service
+                = @Controller
+                = @RestController (137page)
+                
+         6장 
+                  스프링 : 생성 / DI / 소멸  => 빈 라이프사이클 (객체 생명주기)
+     -->
+</beans>
+
+
+
+
+
+
+
+
+
