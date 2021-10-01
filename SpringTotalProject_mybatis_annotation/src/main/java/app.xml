@@ -36,4 +36,9 @@
        p:sqlSessionFactory-ref="ssf"
        p:mapperInterface="com.sist.dao.HotelMapper"
      />
+     <bean 
+       class="org.mybatis.spring.mapper.MapperFactoryBean"
+       p:sqlSessionFactory-ref="ssf"
+       p:mapperInterface="com.sist.dao.LocationMapper"
+     />
 </beans>
