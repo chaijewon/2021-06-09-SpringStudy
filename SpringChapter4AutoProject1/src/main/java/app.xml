@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:c="http://www.springframework.org/schema/c"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
+    <!-- 클래스 등록 :  DAO , MainClass등록 -->
+    <!-- @Autowired : 반드시 스프링에 사용여부를 알려준다  -->
+    <context:annotation-config/>
+    <!-- 클래스 등록 시작 -->
+    <!--  순서는 상관없다  -->
+    <!-- 
+            <bean>을 통해서 등록된 모든 클래스의 메모리할당 
+            setterDI
+            methodDI가 존재하면 호출 
+     -->
+     <!--  3.8 / 3.9 / 4(Spring-Boot) -->
+     <bean id="dao" class="com.sist.dao.EmpDAO"
+       c:driverName="oracle.jdbc.driver.OracleDriver"
+       p:url="jdbc:oracle:thin:@211.238.142.181:1521:XE"
+       p:username="hr"
+       p:password="happy"
+     />
+     <!-- @Autowired를 사용하는 클래스는 반드시 스프링에 등록이 되어 있어야 한다 -->
+     <bean id="mc" class="com.sist.main.MainClass"/>
+     <!-- MainClass : 일반 MainClass (Autowired사용이 안된다)
+                  스프링에 등록된 MainClass에서만 사용이 가능
+          MainClass mc=new MainClass() => Autowired적용이 안됨
+          MainClass mc=(MainClass)app.getBean("mc") Autowired적용됨
+          => New사용 => VO , ClassPathXmlApplicationContext()
+      -->
+</beans>
+
+
+
+
+
